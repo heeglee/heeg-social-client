@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
@@ -6,18 +6,22 @@ import dayjs from 'dayjs';
 import FuncButton from '../../util/FuncButton';
 // REDUX ACTIONS
 import { connect } from 'react-redux';
-import { postSqueak, clearErrors } from '../../redux/actions/dataActions';
 // MATERIAL-UI
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 import { Add as AddIcon } from '@material-ui/icons';
+// STYLESHEET
+import mainTheme from '../../util/mainTheme';
 
-const style = {
+const styles = {
+    ...mainTheme,
     commentImage: {
         width: '100px',
+        maxWidth: '100%',
         height: '100px',
         objectFit: 'cover',
         borderRadius: '50%',
+        marginRight: '10px',
     },
 
     invisibleSeparator: {
@@ -46,15 +50,15 @@ class Comments extends Component {
 
         return (
             <Grid container>
-                {comments.map(comment => {
-                    const { body, timeCreated, user } = comment;
+                {comments.map((comment, cIndex) => {
+                    const { body, timeCreated, user, userImage } = comment;
                     return (
                         // TODO: find another key
-                        <div key={timeCreated}>
+                        <Fragment key={timeCreated}>
                             <Grid item sm={12}>
                                 <Grid container>
                                     <Grid item sm={2}>
-                                        <img src="https://placekitten.com/100/100" alt="comment" className={classes.commentImage} />
+                                        <img src={userImage} alt="comment" className={classes.commentImage} />
                                     </Grid>
                                     <Grid item sm={9}>
                                         <div className={classes.commentData}>
@@ -62,7 +66,7 @@ class Comments extends Component {
                                                 {user}
                                             </Typography>
                                             <Typography variant="body2" color="textSecondary">
-                                                {dayjs(timeCreated.format('h:mm a, MMMM DD YYYY'))}
+                                                {dayjs(timeCreated).format('h:mm a, MMMM DD YYYY')}
                                             </Typography>
                                             <hr className={classes.invisibleSeparator} />
                                             <Typography variant="body1">{body}</Typography>
@@ -70,8 +74,10 @@ class Comments extends Component {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <hr className={classes.visibleSeparator} />
-                        </div>
+                            {cIndex !== comments.length - 1 && (
+                                <hr className={classes.visibleSeparator} />
+                            )}
+                        </Fragment>
                     )
                 })}
             </Grid>
@@ -91,4 +97,4 @@ const mapActionsToProps = {
     
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(style)(Comments));
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Comments));

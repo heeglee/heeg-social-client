@@ -78,7 +78,7 @@ class PostSqueak extends Component {
 
         return (
             <>
-                <FuncButton tooltip="Post a scream!" onClick={this.handleOpen}>
+                <FuncButton tooltip="Post a squeak!" onClick={this.handleOpen}>
                     <AddIcon color="primary" />
                 </FuncButton>
                 <Dialog open={this.state.open} onClose={this.handleClose} fullWidth maxWidth="sm">

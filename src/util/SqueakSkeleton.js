@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import NoImg from '../images/no-img.png';
 // MATERIAL-UI
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardMedia, CardContent } from '@material-ui/core';
-import { LocationOn, Link as LinkIcon, CalendarToday, Edit as EditIcon, KeyboardReturn } from '@material-ui/icons';
+
+import mainTheme from './mainTheme';
 
 const styles = {
+    ...mainTheme,
     card: {
         display: 'flex',
         marginBottom: '20px',
@@ -24,7 +25,7 @@ const styles = {
     handle: {
         width: '60px',
         height: '18px',
-        // backgroundColor: theme.palette.primary.main,
+        backgroundColor: mainTheme.palette.primary.main,
         marginBottom: '7px',
     },
     date: {

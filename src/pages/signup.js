@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { withStyles } from "@material-ui/core/styles";
 import PropTypes from 'prop-types';
-import AppIcon from '../images/squirrel.png';
 import { Link } from 'react-router-dom';
-import authTheme from '../util/authTheme';
-
-import { Grid, Typography, TextField, Button, CircularProgress } from '@material-ui/core'
-
+// REDUX ACTIONS
 import { connect } from 'react-redux';
 import { signUpUser } from '../redux/actions/userActions';
+// MATERIAL-UI
+import { withStyles } from "@material-ui/core/styles";
+import { Grid, Typography, TextField, Button, CircularProgress } from '@material-ui/core'
+// STYLESHEET
+import authTheme from '../util/authTheme';
+// RESOURCES
+import AppIcon from '../images/squirrel.png';
 
 class signup extends Component {
     constructor() {

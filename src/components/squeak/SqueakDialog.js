@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 import FuncButton from '../../util/FuncButton';
 import LikeButton from './LikeButton';
 import Comments from './Comments';
+import CommentForm from './CommentForm';
 // REDUX ACTIONS
 import { connect } from 'react-redux';
-import { getSqueak } from '../../redux/actions/dataActions';
+import { getSqueak, clearErrors } from '../../redux/actions/dataActions';
 // MATERIAL-UI
 import { withStyles } from '@material-ui/core/styles';
 import { Dialog, DialogContent, Grid, CircularProgress, Typography } from '@material-ui/core';
@@ -84,11 +85,12 @@ class SqueakDialog extends Component {
     handleClose = () => {
         window.history.pushState(null, null, this.state.oldPath);
         this.setState({ open: false });
+        this.props.clearErrors();
     };
 
     render() {
         const { classes, squeak: {
-            screamId, body, timeCreated, likeCount, commentCount, user, comments
+            squeakId, body, timeCreated, userImage, countLike, countComment, user, comments
         }, ui: {
             loading
         }} = this.props;
@@ -100,7 +102,7 @@ class SqueakDialog extends Component {
         ) : (
             <Grid container spacing={16}>
                 <Grid item sm={5}>
-                    <img src="https://placekitten.com/200/200" alt="Profile" className={classes.profileImage} />
+                    <img src={userImage} alt="Profile" className={classes.profileImage} />
                 </Grid>
                 <Grid item sm={7}>
                     <Typography component={Link} color="primary" variant="h5" to={`/users/${user}`}>@{user}</Typography>
@@ -112,14 +114,15 @@ class SqueakDialog extends Component {
                     <Typography variant="body2" color="textSecondary">
                         {dayjs(timeCreated).format('h:mm a, MMMM DD YYYY')}
                     </Typography>
-                    <LikeButton screamId={screamId} />
-                    <span>{likeCount} likes</span>
+                    <LikeButton squeakId={squeakId} />
+                    <span>{countLike} likes</span>
                     <FuncButton tooltip="Comments">
                         <ChatIcon color="primary" />
                     </FuncButton>
-                    <span>{commentCount} comments</span>
+                    <span>{countComment} comments</span>
                 </Grid>
                 <hr className={classes.visibleSeparator} />
+                <CommentForm squeakId={squeakId} />
                 <Comments comments={comments} />
             </Grid>
         );
@@ -144,6 +147,7 @@ class SqueakDialog extends Component {
 
 SqueakDialog.propTypes = {
     getSqueak: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
     squeakId: PropTypes.string.isRequired,
     user: PropTypes.string.isRequired,
     squeak: PropTypes.object.isRequired,
@@ -156,7 +160,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-    getSqueak
+    getSqueak,
+    clearErrors,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(SqueakDialog));

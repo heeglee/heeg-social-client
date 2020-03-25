@@ -1,4 +1,4 @@
-import { SET_SQUEAKS_LIST, SET_SQUEAK, LOADING_DATA, POST_SQUEAK, LIKE_SQUEAK, UNLIKE_SQUEAK, DELETE_SQUEAK } from '../types';
+import { SET_SQUEAKS_LIST, SET_SQUEAK, LOADING_DATA, POST_SQUEAK, LIKE_SQUEAK, UNLIKE_SQUEAK, DELETE_SQUEAK, SUBMIT_COMMENT } from '../types';
 
 const initialState = {
     squeaksList: [],
@@ -34,13 +34,22 @@ export default function(state = initialState, action) {
                     action.payload,
                     ...state.squeaksList
                 ]
-            }
+            };
+
+        case SUBMIT_COMMENT:
+            return {
+                ...state,
+                squeak: {
+                    ...state.squeak,
+                    comments: [action.payload, ...state.squeak.comments]
+                }
+            };
 
         case LIKE_SQUEAK:
         case UNLIKE_SQUEAK:
-            let index = state.squeaksList.findIndex(squeak => squeak.screamId === action.payload.screamId);
+            let index = state.squeaksList.findIndex(squeak => squeak.squeakId === action.payload.squeakId);
             state.squeaksList[index] = action.payload;
-            if (state.squeak.screamId === action.payload.screamId) {
+            if (state.squeak.squeakId === action.payload.squeakId) {
                 state.squeak = action.payload;
             }
             return {

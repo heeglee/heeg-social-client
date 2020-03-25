@@ -17,8 +17,7 @@ export const loginUser = (userData, history) => dispatch => {
         history.push('/');
 
     }).catch(e => {
-        // TODO: error handling; key 'error' -> general.
-        console.log(e);
+        console.error(e);
         dispatch({
             type: SET_ERRORS,
             payload: e.response.data
@@ -42,8 +41,7 @@ export const signUpUser = (newUserData, history) => dispatch => {
         history.push('/');
 
     }).catch(e => {
-        // TODO: error handling; key 'error' -> general.
-        console.log(e);
+        console.error(e);
         dispatch({
             type: SET_ERRORS,
             payload: e.response.data
@@ -98,7 +96,7 @@ export const editUserDetails = userDetails => dispatch => {
 };
 
 export const markNotificationsRead = notificationId => dispatch => {
-    axios.post('/notifications', notificationId).then(result => {
+    axios.post('/notifications', notificationId).then(() => {
         dispatch({
             type: MARK_NOTIFICATIONS_READ,
         });

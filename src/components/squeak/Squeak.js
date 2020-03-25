@@ -10,7 +10,6 @@ import DeleteSqueak from './DeleteSqueak';
 import SqueakDialog from './SqueakDialog';
 // REDUX ACTIONS
 import { connect } from 'react-redux';
-// import { likeSqueak, unlikeSqueak } from '../../redux/actions/dataActions';
 // MATERIAL-UI
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
@@ -38,36 +37,33 @@ class Squeak extends Component {
         const {
             classes,
             squeak: {
-                body, timeCreated, user, screamId, likeCount, commentCount
+                body, timeCreated, user, squeakId, userImage, countLike, countComment
             },
             user: {
                 authenticated, credentials: {
-                    handle
+                    username
                 },
             },
         } = this.props;
 
-        const deleteButton = authenticated && user === handle ? (
-            <DeleteSqueak screamId={screamId} />
+        const deleteButton = authenticated && user === username ? (
+            <DeleteSqueak squeakId={squeakId} />
         ) : null;
 
-        const placeholder = "https://placekitten.com/100/100";
-
-        // TODO: place image
         return (
             <Card className={classes.card}>
-                <CardMedia className={classes.image} image={placeholder} title="Profile Image" />
+                <CardMedia className={classes.image} image={userImage} title="Profile Image" />
                 <CardContent className={classes.content}>
                     <Typography variant="h5" component={Link} to={`/users/${user}`} color="primary">{user}</Typography>
                     <Typography variant="body2" color="textSecondary">{dayjs(timeCreated).fromNow()}</Typography>
                     <Typography variant="body1">{body}</Typography>
-                    <LikeButton screamId={screamId} />
-                    <span>{likeCount} Likes</span>
+                    <LikeButton squeakId={squeakId} />
+                    <span>{countLike} Likes</span>
                     <FuncButton tooltip="Comments">
                         <ChatIcon color="primary" />
                     </FuncButton>
-                    <span>{commentCount} Comments</span>
-                    <SqueakDialog squeakId={screamId} user={user} openDialog={this.props.openDialog} />
+                    <span>{countComment} Comments</span>
+                    <SqueakDialog squeakId={squeakId} user={user} openDialog={this.props.openDialog} />
                     {deleteButton}
                 </CardContent>
             </Card>
@@ -76,8 +72,6 @@ class Squeak extends Component {
 }
 
 Squeak.propTypes = {
-    // likeSqueak: PropTypes.func.isRequired,
-    // unlikeSqueak: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     squeak: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
@@ -89,8 +83,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-    // likeSqueak,
-    // unlikeSqueak
+    
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Squeak));

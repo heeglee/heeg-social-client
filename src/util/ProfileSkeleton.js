@@ -4,14 +4,16 @@ import { withStyles } from '@material-ui/core/styles';
 import NoImg from '../images/no-img.png';
 import { Paper } from '@material-ui/core';
 import { LocationOn, Link as LinkIcon, CalendarToday } from '@material-ui/icons';
+import mainTheme from './mainTheme';
 import profileTheme from './profileTheme';
 
 // TODO: correct this
 const styles = {
+    ...mainTheme,
     ...profileTheme,
     handle: {
         height: '20px',
-        // backgroundColor: theme.palette.primary.main,
+        backgroundColor: mainTheme.palette.primary.main,
         width: '60px',
         margin: '0 auto 7px auto',
     },

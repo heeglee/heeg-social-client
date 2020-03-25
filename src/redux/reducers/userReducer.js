@@ -39,8 +39,8 @@ export default function (state = initialState, action) {
                 likes: [
                     ...state.likes,
                     {
-                        handle: state.credentials.handle,
-                        screamId: action.payload.screamId
+                        username: state.credentials.username,
+                        squeakId: action.payload.squeakId
                     }
                 ]
             };
@@ -48,7 +48,7 @@ export default function (state = initialState, action) {
         case UNLIKE_SQUEAK:
             return {
                 ...state,
-                likes: state.likes.filter(like => like.screamId !== action.payload.screamId)
+                likes: state.likes.filter(like => like.squeakId !== action.payload.squeakId)
             }
 
         case MARK_NOTIFICATIONS_READ:

@@ -65,7 +65,7 @@ class Notifications extends Component {
                 return (
                     <MenuItem key={noti.timeCreated} onClick={this.handleClose}>
                         {icon}
-                        <Typography component={Link} color="default" variant="body1" to={`/users/${noti.recipient}/squeak/${noti.screamId}`}>
+                        <Typography component={Link} color="default" variant="body1" to={`/users/${noti.recipient}/squeak/${noti.squeakId}`}>
                             {noti.sender} {verb} your squeak {time}
                         </Typography>
                     </MenuItem>
@@ -83,7 +83,7 @@ class Notifications extends Component {
                     </IconButton>
                 </Tooltip>
                 <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose} onEntered={this.onMenuOpened}>
-
+                    {notiMarkup}
                 </Menu>
             </>
         );

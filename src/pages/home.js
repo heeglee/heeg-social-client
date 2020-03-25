@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
-import Grid from '@material-ui/core/Grid';
-
-import { getSqueaksList } from '../redux/actions/dataActions';
-
+// COMPONENTS
 import Squeak from '../components/squeak/Squeak';
 import Profile from '../components/profile/Profile';
 import SqueakSkeleton from '../util/SqueakSkeleton';
+// REDUX ACTIONS
+import { connect } from 'react-redux';
+import { getSqueaksList } from '../redux/actions/dataActions';
+// MATERIAL-UI
+import Grid from '@material-ui/core/Grid';
 
 class home extends Component {
     componentDidMount() {
@@ -17,7 +17,7 @@ class home extends Component {
 
     render() {
         const { squeaksList, loading } = this.props.data;
-        let recentSqueaksMarkup = !loading ? squeaksList.map(squeak => <Squeak key={squeak.screamId} squeak={squeak} />) : (<SqueakSkeleton />);
+        let recentSqueaksMarkup = !loading ? squeaksList.map(squeak => <Squeak key={squeak.squeakId} squeak={squeak} />) : (<SqueakSkeleton />);
 
         return (
             <Grid container spacing={16}>

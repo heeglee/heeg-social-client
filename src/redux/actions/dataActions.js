@@ -1,4 +1,4 @@
-import { SET_SQUEAKS_LIST, SET_SQUEAK, LOADING_DATA, POST_SQUEAK, LIKE_SQUEAK, UNLIKE_SQUEAK, LOADING_UI, STOP_LOADING_UI, SET_ERRORS, CLEAR_ERRORS } from '../types';
+import { SET_SQUEAKS_LIST, SET_SQUEAK, LOADING_DATA, POST_SQUEAK, LIKE_SQUEAK, UNLIKE_SQUEAK, LOADING_UI, STOP_LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SUBMIT_COMMENT } from '../types';
 import axios from 'axios';
 
 export const getSqueaksList = () => dispatch => {
@@ -6,7 +6,7 @@ export const getSqueaksList = () => dispatch => {
         type: LOADING_DATA
     });
 
-    axios.get('/screams').then(result => {
+    axios.get('/squeaks').then(result => {
         console.log(result.data);
 
         dispatch({
@@ -28,7 +28,7 @@ export const getSqueak = squeakId => dispatch => {
         type: LOADING_UI
     });
 
-    axios.get(`/screams/${squeakId}`).then(result => {
+    axios.get(`/squeaks/${squeakId}`).then(result => {
         dispatch({
             type: SET_SQUEAK,
             payload: result.data,
@@ -46,7 +46,7 @@ export const postSqueak = newSqueak => dispatch => {
         type: LOADING_UI
     });
     // TODO: setSqueaksList() -> POST CALL -> dispatch POST_SQUEAK
-    axios.post('/screams', newSqueak).then(result => {
+    axios.post('/squeaks', newSqueak).then(result => {
         dispatch({
             type: POST_SQUEAK,
             payload: result.data,
@@ -64,8 +64,24 @@ export const postSqueak = newSqueak => dispatch => {
     });
 };
 
+export const submitComment = (squeakId, commentData) => dispatch => {
+    axios.post(`/squeaks/${squeakId}/comments`, commentData).then(result => {
+        dispatch({
+            type: SUBMIT_COMMENT,
+            payload: result.data,
+        });
+
+        dispatch(clearErrors());
+    }).catch(e => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: e.response.data
+        });
+    });
+};
+
 export const likeSqueak = squeakId => dispatch => {
-    axios.get(`/screams/${squeakId}/like`).then(result => {
+    axios.get(`/squeaks/${squeakId}/like`).then(result => {
         dispatch({
             type: LIKE_SQUEAK,
             payload: result.data
@@ -74,7 +90,7 @@ export const likeSqueak = squeakId => dispatch => {
 };
 
 export const unlikeSqueak = squeakId => dispatch => {
-    axios.get(`/screams/${squeakId}/unlike`).then(result => {
+    axios.get(`/squeaks/${squeakId}/unlike`).then(result => {
         dispatch({
             type: UNLIKE_SQUEAK,
             payload: result.data
@@ -84,7 +100,7 @@ export const unlikeSqueak = squeakId => dispatch => {
 
 // CHK: think it'd be better dispatching SET_SQUEAKS_LIST, not DELETE_SQUEAK with returning deleted squeaks id
 export const deleteSqueak = squeakId => dispatch => {
-    axios.delete(`/screams/${squeakId}`).then(() => {
+    axios.delete(`/squeaks/${squeakId}`).then(() => {
         // dispatch({
         //     type: DELETE_SQUEAK,
         //     payload: squeakId
@@ -93,15 +109,15 @@ export const deleteSqueak = squeakId => dispatch => {
     }).catch(e => console.error(e));
 };
 
-export const getUserDetails = handle => dispatch => {
+export const getUserDetails = username => dispatch => {
     dispatch({
         type: LOADING_DATA,
     });
 
-    axios.get(`/user/${handle}`).then(result => {
+    axios.get(`/user/${username}`).then(result => {
         dispatch({
             type: SET_SQUEAKS_LIST,
-            payload: result.data.screams
+            payload: result.data.squeaks
         });
 
     }).catch(e => {

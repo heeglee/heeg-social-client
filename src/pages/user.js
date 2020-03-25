@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 // COMPONENTS
@@ -12,7 +11,7 @@ import { connect } from 'react-redux';
 import { getUserDetails } from '../redux/actions/dataActions';
 // MATERIAL-UI
 import { withStyles } from "@material-ui/core/styles";
-import { Grid, Typography, TextField, Button, CircularProgress } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 
 const styles = {
 
@@ -25,15 +24,15 @@ class user extends Component {
     };
 
     componentDidMount() {
-        const handle = this.props.match.params.handle;
+        const username = this.props.match.params.username;
         const squeakId = this.props.match.params.squeakId;
 
         if (squeakId) this.setState({ squeakIdParam: squeakId });
 
-        this.props.getUserDetails(handle);
+        this.props.getUserDetails(username);
 
-        // TODO: THIS SUCKS; requesting the same get call twice. nonsense.
-        axios.get(`/user/${handle}`).then(result => {
+        // TODO: THIS SUCKS; requesting the same GET call twice. nonsense.
+        axios.get(`/user/${username}`).then(result => {
             this.setState({
                 profile: result.data.user
             });
@@ -44,17 +43,18 @@ class user extends Component {
     render() {
         const { squeaksList, loading } = this.props.data;
         const { squeakIdParam } = this.state;
+        console.log(squeaksList);
 
         const squeaksMarkup = loading ? (
             <SqueakSkeleton />
         ) : squeaksList === null ? (
             <p>No squeaks from this user.</p>
         ) : !squeakIdParam ? (
-            squeaksList.map(squeak => <Squeak key={squeak.screamId} squeak={squeak} />)
+            squeaksList.map(squeak => <Squeak key={squeak.squeakId} squeak={squeak} />)
         ) : (
             squeaksList.map(squeak => {
-                if (squeak.screamId !== squeakIdParam) return (<Squeak key={squeak.screamId} squeak={squeak} />);
-                else return (<Squeak key={squeak.screamId} squeak={squeak} openDialog />);
+                if (squeak.squeakId !== squeakIdParam) return (<Squeak key={squeak.squeakId} squeak={squeak} />);
+                else return (<Squeak key={squeak.squeakId} squeak={squeak} openDialog />);
             })
         );
 

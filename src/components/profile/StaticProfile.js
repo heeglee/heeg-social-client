@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
-// COMPONENTS
-import EditDetails from './EditDetails';
-import FuncButton from '../../util/FuncButton';
 // REDUX ACTIONS
 import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 // MATERIAL-UI
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Link as MuiLink, Typography } from '@material-ui/core';
-import { LocationOn, Link as LinkIcon, CalendarToday, Edit as EditIcon, KeyboardReturn } from '@material-ui/icons';
+import { LocationOn, Link as LinkIcon, CalendarToday } from '@material-ui/icons';
 // STYLESHEET
 import profileTheme from '../../util/profileTheme';
 
 const StaticProfile = props => {
-    const { classes, profile: { handle, timeCreated, imageUrl, bio, website, location } } = props;
+    const { classes, profile: { username, timeCreated, imageUrl, bio, website, location } } = props;
 
     return (
         <Paper className={classes.paper}>
@@ -26,8 +23,8 @@ const StaticProfile = props => {
                 </div>
                 <hr />
                 <div className="profile-details">
-                    <MuiLink component={Link} to={`/users/${handle}`} color="primary" variant="h5">
-                        @{handle}
+                    <MuiLink component={Link} to={`/users/${username}`} color="primary" variant="h5">
+                        @{username}
                     </MuiLink>
                     <hr />
                     {bio && <Typography variant="body2">{bio}</Typography>}

@@ -1,4 +1,7 @@
+import mainTheme from './mainTheme';
+
 export default {
+    ...mainTheme,
     paper: {
         padding: '20px',
         marginLeft: '20px'

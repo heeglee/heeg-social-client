@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { withStyles } from "@material-ui/core/styles";
 import PropTypes from 'prop-types';
-import AppIcon from '../images/squirrel.png';
 import { Link } from 'react-router-dom';
-import authTheme from '../util/authTheme';
+// REDUX ACTIONS
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions';
-
+// MATERIAL-UI
+import { withStyles } from "@material-ui/core/styles";
 import { Grid, Typography, TextField, Button, CircularProgress } from '@material-ui/core'
+// STYLESHEET
+import authTheme from '../util/authTheme';
+// RESOURCES
+import AppIcon from '../images/squirrel.png';
 
 class login extends Component {
     constructor() {
@@ -59,7 +62,7 @@ class login extends Component {
                             className={classes.TextField} value={this.state.email} onChange={this.handleChange} helperText={errors.email} error={errors.email ? true : false} fullWidth />
                         <TextField id="password" name="password" type="password" label="Password"
                             className={classes.TextField} value={this.state.password} onChange={this.handleChange} helperText={errors.password} error={errors.password ? true : false} fullWidth />
-                        {/* {errors.general && (<Typography variant="body2" className={classes.customError}>{errors.general}</Typography>)} */}
+                        {errors.general && (<Typography variant="body2" className={classes.customError}>{errors.general}</Typography>)} {/* CHK */}
                         <Button type="submit" variant="contained" color="primary" className={classes.button} disabled={loading}>
                             Login
                             {loading && <CircularProgress size={30} className={classes.progress} />}

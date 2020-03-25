@@ -6,14 +6,8 @@ import FuncButton from '../../util/FuncButton';
 // REDUX ACTIONS
 import { connect } from 'react-redux';
 import { likeSqueak, unlikeSqueak } from '../../redux/actions/dataActions';
-// MATERIAL-UI
-import { withStyles } from '@material-ui/core/styles';
 // import { Dialog, DialogTitle, DialogContent, Grid, CircularProgress, Typography } from '@material-ui/core';
 import { FavoriteBorder, Favorite as FavoriteIcon } from '@material-ui/icons';
-
-const styles = {
-
-};
 
 class LikeButton extends Component {
     state = {
@@ -21,17 +15,17 @@ class LikeButton extends Component {
     };
 
     checkLiked = () => {
-        if (this.props.user.likes && this.props.user.likes.find(like => like.screamId === this.props.screamId)) {
+        if (this.props.user.likes && this.props.user.likes.find(like => like.squeakId === this.props.squeakId)) {
             return true;
         } else return false;
     };
 
     likeSqueak = () => {
-        this.props.likeSqueak(this.props.screamId);
+        this.props.likeSqueak(this.props.squeakId);
     };
 
     unlikeSqueak = () => {
-        this.props.unlikeSqueak(this.props.screamId);
+        this.props.unlikeSqueak(this.props.squeakId);
     };
     
     render() {
@@ -44,7 +38,7 @@ class LikeButton extends Component {
                 </Link>
             </FuncButton>
         ) : (
-            this.checkLiked ? (
+            this.checkLiked() ? (
                 <FuncButton tooltip="Undo Like" onClick={this.unlikeSqueak}>
                     <FavoriteIcon color="primary" />
                 </FuncButton>
@@ -63,7 +57,7 @@ LikeButton.propTypes = {
     likeSqueak: PropTypes.func.isRequired,
     unlikeSqueak: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    screamId: PropTypes.string.isRequired,
+    squeakId: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -75,4 +69,4 @@ const mapActionsToProps = {
     unlikeSqueak
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(LikeButton));
+export default connect(mapStateToProps, mapActionsToProps)(LikeButton);

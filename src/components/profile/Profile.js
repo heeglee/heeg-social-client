@@ -27,18 +27,18 @@ class Profile extends Component {
     handleEditPicture = () => {
         const fileInput = document.querySelector('#imageInput');
         fileInput.click();
-    }
+    };
 
     handleLogout = () => {
         this.props.logoutUser();
-    }
+    };
 
     render() {
         const {
             classes,
             user: {
                 credentials: {
-                    handle, timeCreated, imageUrl, bio, website, location
+                    username, timeCreated, imageUrl, bio, website, location
                 },
                 loading,
                 authenticated,
@@ -58,8 +58,8 @@ class Profile extends Component {
                         </div>
                         <hr />
                         <div className="profile-details">
-                            <MuiLink component={Link} to={`/users/${handle}`} color="primary" variant="h5">
-                                @{handle}
+                            <MuiLink component={Link} to={`/users/${username}`} color="primary" variant="h5">
+                                @{username}
                             </MuiLink>
                             <hr />
                             {bio && <Typography variant="body2">{bio}</Typography>}

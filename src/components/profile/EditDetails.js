@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-
+// COMPONENTS
+import FuncButton from '../../util/FuncButton';
+// REDUX ACTIONS
 import { connect } from 'react-redux';
 import { editUserDetails } from '../../redux/actions/userActions';
+// MATERIAL-UI
+import { withStyles } from '@material-ui/core/styles';
 import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button } from '@material-ui/core';
 import { Edit as EditIcon } from '@material-ui/icons';
+// STYLESHEET
 import profileTheme from '../../util/profileTheme';
-import FuncButton from '../../util/FuncButton';
 
 class EditDetails extends Component {
     state = {

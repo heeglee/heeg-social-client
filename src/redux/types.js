@@ -17,6 +17,7 @@ export const LOADING_DATA = 'LOADING_DATA';
 export const SET_SQUEAKS_LIST = 'SET_SQUEAKS_LIST';
 export const SET_SQUEAK = 'SET_SQUEAK'
 export const POST_SQUEAK = 'POST_SQUEAK';
+export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
 export const LIKE_SQUEAK = 'LIKE_SQUEAK';
 export const UNLIKE_SQUEAK = 'UNLIKE_SQUEAK';
 export const DELETE_SQUEAK = 'DELETE_SQUEAK';

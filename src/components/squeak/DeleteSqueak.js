@@ -31,7 +31,7 @@ class DeleteSqueak extends Component {
     };
 
     deleteSqueak = () => {
-        this.props.deleteSqueak(this.props.screamId);
+        this.props.deleteSqueak(this.props.squeakId);
         this.setState({ open: false });
     };
 
@@ -60,7 +60,7 @@ class DeleteSqueak extends Component {
 DeleteSqueak.propTypes = {
     deleteSqueak: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
-    screamId: PropTypes.string.isRequired,
+    squeakId: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
