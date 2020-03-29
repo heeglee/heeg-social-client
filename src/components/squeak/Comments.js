@@ -28,7 +28,7 @@ class Comments extends Component {
 
         return (
             <Grid container>
-                {comments.map((comment, index) => {
+                {comments ? comments.map((comment, index) => {
                     const { body, timeCreated, user, userImage } = comment;
                     return (
                         <Fragment key={timeCreated}>
@@ -56,14 +56,14 @@ class Comments extends Component {
                             )}
                         </Fragment>
                     )
-                })}
+                }) : null}
             </Grid>
         );
     }
 }
 
 Comments.propTypes = {
-    comments: PropTypes.array.isRequired,
+    comments: PropTypes.array,
 };
 
 export default withStyles(styles)(Comments);

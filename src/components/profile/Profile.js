@@ -91,11 +91,11 @@ class Profile extends Component {
                 <Paper className={classes.paper}>
                     <Typography variant="body2" align="center">
                         No profile found :( Please log in again.
-                        <div className={classes.Button}>
-                            <Button variant="contained" color="primary" component={Link} to="/login">Login</Button>
-                            <Button variant="contained" color="secondary" component={Link} to="/signup">Sign Up</Button>
-                        </div>
                     </Typography>
+                    <div className={classes.Button} align="center">
+                        <Button variant="contained" color="primary" component={Link} to="/login">Login</Button>
+                        <Button variant="contained" color="secondary" component={Link} to="/signup">Sign Up</Button>
+                    </div>
                 </Paper>
             )
         ) : (<ProfileSkeleton />);

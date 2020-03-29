@@ -19,8 +19,7 @@ const styles = {
     },
     progressSpinner: {
         position: 'absolute',
-        left: '50%',
-        transform: 'translateX(-50%)',
+        left: '25px',
     },
     closeButton: {
         position: 'absolute',
