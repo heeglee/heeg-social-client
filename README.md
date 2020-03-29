@@ -2,6 +2,8 @@
 
 간단한 SNS 서비스입니다.
 
+![Squeakers](./squeakers.jpg)
+
 Back-end Function: [https://github.com/heeglee/heeg-social-functions](https://github.com/heeglee/heeg-social-functions)
 
 
