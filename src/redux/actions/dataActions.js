@@ -1,4 +1,4 @@
-import { SET_SQUEAKS_LIST, SET_SQUEAK, LOADING_DATA, POST_SQUEAK, LIKE_SQUEAK, UNLIKE_SQUEAK, LOADING_UI, STOP_LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SUBMIT_COMMENT } from '../types';
+import { SET_SQUEAKS_LIST, SET_SQUEAK, LOADING_DATA, POST_SQUEAK, LIKE_SQUEAK, UNLIKE_SQUEAK, DELETE_SQUEAK, LOADING_UI, STOP_LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SUBMIT_COMMENT } from '../types';
 import axios from 'axios';
 
 export const getSqueaksList = () => dispatch => {
@@ -7,8 +7,6 @@ export const getSqueaksList = () => dispatch => {
     });
 
     axios.get('/squeaks').then(result => {
-        console.log(result.data);
-
         dispatch({
             type: SET_SQUEAKS_LIST,
             payload: result.data
@@ -98,14 +96,12 @@ export const unlikeSqueak = squeakId => dispatch => {
     }).catch (e => console.error(e));
 };
 
-// CHK: think it'd be better dispatching SET_SQUEAKS_LIST, not DELETE_SQUEAK with returning deleted squeaks id
 export const deleteSqueak = squeakId => dispatch => {
     axios.delete(`/squeaks/${squeakId}`).then(() => {
-        // dispatch({
-        //     type: DELETE_SQUEAK,
-        //     payload: squeakId
-        // });
-        dispatch(getSqueaksList());
+        dispatch({
+            type: DELETE_SQUEAK,
+            payload: squeakId
+        });
     }).catch(e => console.error(e));
 };
 

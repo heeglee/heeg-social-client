@@ -64,7 +64,6 @@ class PostSqueak extends Component {
     };
 
     handleSubmit = e => {
-        console.log('clicked');
         e.preventDefault();
 
         this.props.postSqueak({

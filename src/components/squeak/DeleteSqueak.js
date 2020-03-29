@@ -14,6 +14,7 @@ const styles = {
     deleteSqueak: {
         position: 'absolute',
         left: '90%',
+        marginRight: '10px',
     }
 };
 

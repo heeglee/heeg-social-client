@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 // COMPONENTS
 import EditDetails from './EditDetails';
 import FuncButton from '../../util/FuncButton';
-import ProfileSkeleton from '../../util/ProfileSkeleton';
+import ProfileSkeleton from '../../util/skeletons/ProfileSkeleton';
 // REDUX ACTIONS
 import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 // MATERIAL-UI
@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Button, Paper, Link as MuiLink, Typography } from '@material-ui/core';
 import { LocationOn, Link as LinkIcon, CalendarToday, Edit as EditIcon, KeyboardReturn } from '@material-ui/icons';
 // STYLESHEET
-import profileTheme from '../../util/profileTheme';
+import mainTheme from '../../util/theme/mainTheme';
 
 class Profile extends Component {
     handleImageChange = e => {
@@ -117,4 +117,4 @@ Profile.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(profileTheme)(Profile));
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(mainTheme)(Profile));

@@ -4,8 +4,8 @@ import axios from 'axios';
 // COMPONENTS
 import Squeak from '../components/squeak/Squeak';
 import StaticProfile from '../components/profile/StaticProfile';
-import SqueakSkeleton from '../util/SqueakSkeleton';
-import ProfileSkeleton from '../util/ProfileSkeleton';
+import SqueakSkeleton from '../util/skeletons/SqueakSkeleton';
+import ProfileSkeleton from '../util/skeletons/ProfileSkeleton';
 // REDUX ACTIONS
 import { connect } from 'react-redux';
 import { getUserDetails } from '../redux/actions/dataActions';
@@ -43,7 +43,6 @@ class user extends Component {
     render() {
         const { squeaksList, loading } = this.props.data;
         const { squeakIdParam } = this.state;
-        console.log(squeaksList);
 
         const squeaksMarkup = loading ? (
             <SqueakSkeleton />
@@ -59,7 +58,7 @@ class user extends Component {
         );
 
         return (
-            <Grid container spacing={16}>
+            <Grid container spacing={10}>
                 <Grid item sm={8} xs={12}>
                     {squeaksMarkup}
                 </Grid>

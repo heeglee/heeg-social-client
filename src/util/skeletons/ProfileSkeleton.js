@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import NoImg from '../images/no-img.png';
+import NoImg from '../../images/no-img.png';
 import { Paper } from '@material-ui/core';
 import { LocationOn, Link as LinkIcon, CalendarToday } from '@material-ui/icons';
-import mainTheme from './mainTheme';
-import profileTheme from './profileTheme';
+import mainTheme from '../theme/mainTheme';
 
-// TODO: correct this
 const styles = {
     ...mainTheme,
-    ...profileTheme,
     handle: {
         height: '20px',
         backgroundColor: mainTheme.palette.primary.main,
@@ -38,7 +35,7 @@ const ProfileSkeleton = (props) => {
         <Paper className={classes.paper}>
             <div className={classes.profile}>
                 <div className="image-wrapper">
-                    <img src={NoImg} alt="profile" className="profile-img" />
+                    <img src={NoImg} alt="profile" className="profile-image" />
                 </div>
                 <hr />
                 <div className="profile-details">

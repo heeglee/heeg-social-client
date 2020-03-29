@@ -57,13 +57,11 @@ export default function(state = initialState, action) {
             };
 
         case DELETE_SQUEAK:
-            return state;
-        // CHK
-        //     index = state.squeaksList.findIndex(squeak => squeak.screamId === action.payload);
-        //     state.squeaksList.splice(index, 1);
-        //     return {
-        //         ...state
-        //     };
+            let indexDeleted = state.squeaksList.findIndex(squeak => squeak.squeakId === action.payload);
+            state.squeaksList.splice(indexDeleted, 1);
+            return {
+                ...state
+            };
         
         default:
             return state;

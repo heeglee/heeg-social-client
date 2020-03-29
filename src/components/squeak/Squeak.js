@@ -15,7 +15,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { Chat as ChatIcon } from '@material-ui/icons';
 
-
 const styles = {
     card: {
         position: 'relative',
@@ -58,11 +57,11 @@ class Squeak extends Component {
                     <Typography variant="body2" color="textSecondary">{dayjs(timeCreated).fromNow()}</Typography>
                     <Typography variant="body1">{body}</Typography>
                     <LikeButton squeakId={squeakId} />
-                    <span>{countLike} Likes</span>
+                    <span>{countLike}</span><span className="mq-reduce"> Likes</span>
                     <FuncButton tooltip="Comments">
                         <ChatIcon color="primary" />
                     </FuncButton>
-                    <span>{countComment} Comments</span>
+                    <span>{countComment}</span><span className="mq-reduce"> Comments</span>
                     <SqueakDialog squeakId={squeakId} user={user} openDialog={this.props.openDialog} />
                     {deleteButton}
                 </CardContent>

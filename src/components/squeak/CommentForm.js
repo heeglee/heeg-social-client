@@ -7,7 +7,7 @@ import { submitComment, clearErrors } from '../../redux/actions/dataActions'
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, TextField, Button } from '@material-ui/core';
 // STYLESHEET
-import mainTheme from '../../util/mainTheme';
+import mainTheme from '../../util/theme/mainTheme';
 
 const styles = {
     ...mainTheme,

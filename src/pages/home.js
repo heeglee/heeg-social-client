@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // COMPONENTS
 import Squeak from '../components/squeak/Squeak';
 import Profile from '../components/profile/Profile';
-import SqueakSkeleton from '../util/SqueakSkeleton';
+import SqueakSkeleton from '../util/skeletons/SqueakSkeleton';
 // REDUX ACTIONS
 import { connect } from 'react-redux';
 import { getSqueaksList } from '../redux/actions/dataActions';
@@ -20,7 +20,7 @@ class home extends Component {
         let recentSqueaksMarkup = !loading ? squeaksList.map(squeak => <Squeak key={squeak.squeakId} squeak={squeak} />) : (<SqueakSkeleton />);
 
         return (
-            <Grid container spacing={16}>
+            <Grid container spacing={10}>
                 <Grid item sm={8} xs={12}>
                     {recentSqueaksMarkup}
                 </Grid>

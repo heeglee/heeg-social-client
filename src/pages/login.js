@@ -8,7 +8,7 @@ import { loginUser } from '../redux/actions/userActions';
 import { withStyles } from "@material-ui/core/styles";
 import { Grid, Typography, TextField, Button, CircularProgress } from '@material-ui/core'
 // STYLESHEET
-import authTheme from '../util/authTheme';
+import mainTheme from '../util/theme/mainTheme';
 // RESOURCES
 import AppIcon from '../images/squirrel.png';
 
@@ -67,7 +67,7 @@ class login extends Component {
                             Login
                             {loading && <CircularProgress size={30} className={classes.progress} />}
                         </Button>
-                        <small>Don't have an account? <Link to="/signup">Sign up!</Link></small>
+                        <p>Don't have an account? <Link to="/signup">Sign up!</Link></p>
                     </form>
                 </Grid>
                 <Grid item sm/>
@@ -92,4 +92,4 @@ const mapActionsToProps = {
     loginUser
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(authTheme)(login));
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(mainTheme)(login));

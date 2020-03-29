@@ -14,22 +14,14 @@ import { getSqueak, clearErrors } from '../../redux/actions/dataActions';
 import { withStyles } from '@material-ui/core/styles';
 import { Dialog, DialogContent, Grid, CircularProgress, Typography } from '@material-ui/core';
 import { Close as CloseIcon, UnfoldMore, Chat as ChatIcon } from '@material-ui/icons';
+// STYLESHEET
+import mainTheme from '../../util/theme/mainTheme';
 
 const styles = {
+    ...mainTheme,
     closeButton: {
         position: 'absolute',
         left: '90%',
-    },
-
-    invisibleSeparator: {
-        border: 'none',
-        margin: '4px',
-    },
-
-    visibleSeparator: {
-        width: '100%',
-        borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-        marginBottom: '20px'
     },
 
     profileImage: {
@@ -40,16 +32,21 @@ const styles = {
     },
 
     dialogContent: {
-        padding: '20px',
+        // padding: '20px',
     },
 
     spinnerDiv: {
         textAlign: 'center',
         margin: '50px auto',
     },
+
+    // CHK
+    dialogContainer: {
+        width: '100%',
+        margin: '0px',
+    }
 };
 
-// TODO: squeak.user - user.handle
 class SqueakDialog extends Component {
     state = {
         open: false,
@@ -81,7 +78,6 @@ class SqueakDialog extends Component {
         this.props.getSqueak(this.props.squeakId);
     };
 
-    // TODO: add clearErrors()
     handleClose = () => {
         window.history.pushState(null, null, this.state.oldPath);
         this.setState({ open: false });
@@ -100,7 +96,7 @@ class SqueakDialog extends Component {
                 <CircularProgress size={200} thickness={2} />
             </div>
         ) : (
-            <Grid container spacing={16}>
+            <Grid container spacing={10} className={classes.dialogContainer}>
                 <Grid item sm={5}>
                     <img src={userImage} alt="Profile" className={classes.profileImage} />
                 </Grid>

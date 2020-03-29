@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Paper, Link as MuiLink, Typography } from '@material-ui/core';
 import { LocationOn, Link as LinkIcon, CalendarToday } from '@material-ui/icons';
 // STYLESHEET
-import profileTheme from '../../util/profileTheme';
+import mainTheme from '../../util/theme/mainTheme';
 
 const StaticProfile = props => {
     const { classes, profile: { username, timeCreated, imageUrl, bio, website, location } } = props;
@@ -62,4 +62,4 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = { logoutUser, uploadImage };
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(profileTheme)(StaticProfile));
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(mainTheme)(StaticProfile));

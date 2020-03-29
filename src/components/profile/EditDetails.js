@@ -10,7 +10,14 @@ import { withStyles } from '@material-ui/core/styles';
 import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button } from '@material-ui/core';
 import { Edit as EditIcon } from '@material-ui/icons';
 // STYLESHEET
-import profileTheme from '../../util/profileTheme';
+import mainTheme from '../../util/theme/mainTheme';
+
+const styles = {
+    ...mainTheme,
+    details: {
+        float: 'right',
+    }
+}
 
 class EditDetails extends Component {
     state = {
@@ -106,4 +113,4 @@ const mapActionsToProps = {
     editUserDetails
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(profileTheme)(EditDetails));
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(EditDetails));

@@ -11,7 +11,7 @@ import { logoutUser, getUserData } from './redux/actions/userActions';
 // STYLES
 import './App.css';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import mainTheme from './util/mainTheme';
+import mainTheme from './util/theme/mainTheme';
 // PAGES
 import home from './pages/home';
 import login from './pages/login';
@@ -26,7 +26,6 @@ const token = localStorage.FirebaseIdToken;
 
 if (token) {
 	const decodedToken = jwtDecode(token);
-	console.log(decodedToken);
 	if (decodedToken.exp * 1000 < Date.now()) {
 		store.dispatch(logoutUser());
 		window.location.href = '/login';

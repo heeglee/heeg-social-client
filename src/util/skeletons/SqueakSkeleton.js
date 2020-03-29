@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NoImg from '../images/no-img.png';
+import NoImg from '../../images/no-img.png';
 // MATERIAL-UI
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardMedia, CardContent } from '@material-ui/core';
 
-import mainTheme from './mainTheme';
+import mainTheme from '../theme/mainTheme';
 
 const styles = {
     ...mainTheme,
